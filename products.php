@@ -106,4 +106,5 @@ if ($page > $total_pages) {
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/products.js"></script>
 </body>
+
 </html>
