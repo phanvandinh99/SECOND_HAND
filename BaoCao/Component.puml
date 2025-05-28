@@ -1,0 +1,114 @@
+@startuml Component Diagram
+
+package "Frontend Components" {
+    [User Interface] as UI
+    note right of UI
+      - Trang chủ
+      - Danh sách sản phẩm
+      - Chi tiết sản phẩm
+      - Giỏ hàng
+      - Thanh toán
+      - Tài khoản người dùng
+    end note
+
+    [Client Scripts] as CS
+    note right of CS
+      - JavaScript validation
+      - AJAX requests
+      - Dynamic content loading
+      - Cart management
+      - Search & filter
+    end note
+
+    [CSS Styles] as CSS
+    note right of CSS
+      - Responsive design
+      - Theme customization
+      - Layout components
+    end note
+}
+
+package "Backend Components" {
+    [Controllers] as CTRL
+    note right of CTRL
+      - UserController
+      - ProductController
+      - OrderController
+      - CartController
+      - CategoryController
+    end note
+
+    [Models] as MODEL
+    note right of MODEL
+      - User
+      - Product
+      - Order
+      - Cart
+      - Category
+      - OrderDetail
+      - CartItem
+    end note
+
+    [Services] as SVC
+    note right of SVC
+      - Authentication
+      - Payment (VNPay, Momo)
+      - Email
+      - File Upload
+    end note
+}
+
+package "Database Components" {
+    [MySQL Database] as DB
+    note right of DB
+      - Users
+      - Products
+      - Orders
+      - Categories
+      - Carts
+      - Order Details
+      - Cart Items
+    end note
+
+    [Data Access] as DA
+    note right of DA
+      - Eloquent ORM
+      - Migrations
+      - Seeds
+    end note
+}
+
+package "External Services" {
+    [Payment Gateways] as PG
+    note right of PG
+      - VNPay Integration
+      - Momo Integration
+    end note
+
+    [Email Service] as ES
+    note right of ES
+      - SMTP Server
+      - Email Templates
+    end note
+
+    [File Storage] as FS
+    note right of FS
+      - Product Images
+      - User Avatars
+      - System Files
+    end note
+}
+
+' Relationships
+UI --> CS
+CS --> CSS
+UI --> CTRL
+CTRL --> MODEL
+MODEL --> SVC
+MODEL --> DA
+DA --> DB
+SVC --> PG
+SVC --> ES
+SVC --> FS
+
+@enduml

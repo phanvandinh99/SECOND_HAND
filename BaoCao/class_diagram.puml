@@ -1,0 +1,144 @@
+http://www.plantuml.com/plantuml/uml/
+@startuml Second Hand Clothing Website
+
+' Style definitions
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+' Classes
+abstract class User {
+    -id: int
+    -username: string
+    -password: string
+    -email: string
+    -fullname: string
+    -phone: string
+    -address: string
+    -role: string
+    -created_at: datetime
+    -updated_at: datetime
+    +register()
+    +login()
+    +updateProfile()
+    +changePassword()
+    +logout()
+}
+
+class Admin {
+    +manageUsers()
+    +manageProducts()
+    +manageOrders()
+    +viewReports()
+}
+
+class Customer {
+    +viewProducts()
+    +addToCart()
+    +placeOrder()
+    +viewOrderHistory()
+}
+
+class Product {
+    -id: int
+    -name: string
+    -description: string
+    -price: decimal
+    -original_price: decimal
+    -quantity: int
+    -category_id: int
+    -status: string
+    -images: string[]
+    -created_at: datetime
+    -updated_at: datetime
+    +create()
+    +update()
+    +delete()
+    +getDetails()
+    +updateStock()
+}
+
+class Category {
+    -id: int
+    -name: string
+    -description: string
+    -parent_id: int
+    -status: string
+    -created_at: datetime
+    -updated_at: datetime
+    +create()
+    +update()
+    +delete()
+    +getProducts()
+}
+
+class Order {
+    -id: int
+    -user_id: int
+    -total_amount: decimal
+    -status: string
+    -shipping_address: string
+    -payment_method: string
+    -created_at: datetime
+    -updated_at: datetime
+    +create()
+    +update()
+    +cancel()
+    +getDetails()
+    +calculateTotal()
+}
+
+class OrderDetail {
+    -id: int
+    -order_id: int
+    -product_id: int
+    -quantity: int
+    -price: decimal
+    -created_at: datetime
+    -updated_at: datetime
+    +create()
+    +update()
+    +delete()
+    +calculateSubtotal()
+}
+
+class Cart {
+    -id: int
+    -user_id: int
+    -created_at: datetime
+    -updated_at: datetime
+    +addItem()
+    +updateQuantity()
+    +removeItem()
+    +clear()
+    +calculateTotal()
+}
+
+class CartItem {
+    -id: int
+    -cart_id: int
+    -product_id: int
+    -quantity: int
+    -created_at: datetime
+    -updated_at: datetime
+    +create()
+    +update()
+    +delete()
+    +calculateSubtotal()
+}
+
+' Relationships
+User <|-- Admin
+User <|-- Customer
+User "1" -- "1" Cart
+User "1" -- "*" Order
+Cart "1" -- "*" CartItem
+Order "1" -- "*" OrderDetail
+Category "1" -- "*" Product
+CartItem ..> Product
+OrderDetail ..> Product
+
+@enduml 

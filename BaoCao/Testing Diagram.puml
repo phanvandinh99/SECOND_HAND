@@ -1,0 +1,89 @@
+@startuml Testing Diagram
+
+package "User Function Testing" {
+    [Registration] as REG
+    [Login] as LOGIN
+    [Account Management] as ACC
+    [Product Search] as SEARCH
+    [Shopping Cart] as CART
+    [Payment] as PAY
+}
+
+package "Admin Function Testing" {
+    [Product Management] as PROD
+    [Order Management] as ORDER
+    [User Management] as USER
+    [Category Management] as CAT
+}
+
+package "Performance Testing" {
+    [Page Load Speed] as SPEED
+    [Load Capacity] as LOAD
+    [Security] as SEC
+}
+
+package "Interface Testing" {
+    [Responsive Design] as RESP
+    [User Friendliness] as FRIEND
+    [Consistency] as CONS
+}
+
+package "Integration Testing" {
+    [Payment Methods] as PAY_METHODS
+    [Email Functions] as EMAIL_FUNC
+    [Upload Features] as UPLOAD
+}
+
+' Relationships
+REG --> LOGIN
+LOGIN --> ACC
+SEARCH --> CART
+CART --> PAY
+
+PROD --> ORDER
+ORDER --> USER
+USER --> CAT
+
+SPEED --> LOAD
+LOAD --> SEC
+
+RESP --> FRIEND
+FRIEND --> CONS
+
+PAY_METHODS --> EMAIL_FUNC
+EMAIL_FUNC --> UPLOAD
+
+note right of REG
+  - Valid registration
+  - Invalid registration
+  - Email verification
+end note
+
+note right of PROD
+  - Add product
+  - Update product
+  - Delete product
+  - Inventory management
+end note
+
+note right of SPEED
+  - Home page load
+  - Product page load
+  - Cart page load
+  - Checkout process
+end note
+
+note right of RESP
+  - Desktop view
+  - Tablet view
+  - Mobile view
+end note
+
+note right of PAY_METHODS
+  - VNPay
+  - Momo
+  - Bank transfer
+  - COD
+end note
+
+@enduml
